@@ -1,5 +1,5 @@
-var w = 1024,
-    h = 1024,
+var w = $(window).width(),
+    h = $(window).height(),
     fill = d3.scale.linear()
       .domain([-1,0,5,10,Infinity])
       .range(["white", "green", "yellow", "red", "red"]);
@@ -8,7 +8,8 @@ var vis = d3.select("#chart").append("svg:svg")
     .attr("width", w)
     .attr("height", h);
 
-d3.json("t.json", function(json) {
+var do_viz = function(my_json){
+d3.json(my_json, function(json) {
   // create nodes and node index
   var ix = {null:0};
   users = {};
@@ -90,3 +91,4 @@ d3.json("t.json", function(json) {
         .attr("cy", function(d) { return d.y; });
   });
 });
+}
